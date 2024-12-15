@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Unclickable Button</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f0f0f0;
+            }
+            .container {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            .unclickable-button {
+                position: absolute;
+                padding: 10px 20px;
+                font-size: 16px;
+                color: white;
+                background-color: #007bff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: transform 0.2s ease;
+            }
+            .img {
+                width: 500px;
+                height: 500px;
+                object-fit: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Vừng béo ăn mì ngon đấy</h1>
+        </div>
+        <img
+            src="./365a7ddb-74c7-4e12-95cd-97dec7809fe7.jpg"
+            alt=""
+            class="img"
+        />
+        <div class="container">
+            <button class="unclickable-button">Bấm vào đây để xóa ảnh</button>
+        </div>
+
+        <script>
+            const button = document.querySelector(".unclickable-button");
+            const container = document.querySelector(".container");
+
+            button.addEventListener("mouseover", () => {
+                // Get the container dimensions
+                const containerRect = container.getBoundingClientRect();
+
+                // Generate random positions
+                const newX =
+                    Math.random() * (containerRect.width - button.offsetWidth);
+                const newY =
+                    Math.random() *
+                    (containerRect.height - button.offsetHeight);
+
+                // Update button position
+                button.style.transform = `translate(${newX}px, ${newY}px)`;
+            });
+
+            setTimeout(() => {
+                alert("LÊU LÊU ĐỐ ANH BẮT ĐƯỢC EM");
+            }, 5000);
+            setTimeout(() => {
+                alert("KHÔNG BẮT ĐƯỢC LÀM CHÓ");
+            }, 10000);
+        </script>
+    </body>
+</html>
